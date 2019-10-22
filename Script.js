@@ -35,7 +35,7 @@ var QuizGame = function(){
             startPage.appendChild(startButton);
             document.getElementById("div1").appendChild(startPage);
             document.getElementById('startquiz').innerHTML = "Start Quiz!";
-            document.getElementById("startquiz").addEventListener("click",startBtn_onClick());
+            document.getElementById("startquiz").addEventListener("click",startBtn_onClick(event));
         }
         
         function startBtn_onClick(event){
@@ -43,8 +43,13 @@ var QuizGame = function(){
             // shows a new page (maybe) that
             // displays the questions
             // that is all that it does.
-            var titile = document.createElement("div").innerText(Object.titile);
-            var choices = document.createElement("button").innerText(Object.choices);
+            var title = document.createElement("h1");
+            title.setAttribute("id","title1");
+            var objTitle = console.log(questions[0]);
+            document.getElementById("title1").innerHTML = objTitle;
+            var choices = document.createElement("button");
+            choices.setAttribute("id", "choices1");
+            document.getElementById("choices1"),innerHTML = console.log(Object.value[choices]);
             title.appendChild(choices);
             startPage.replaceChild(title, startButton);
             gameLogic(); // now run the game logic itself
