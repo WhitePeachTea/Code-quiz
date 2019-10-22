@@ -17,6 +17,8 @@ var QuizGame = function(){
             var score = 0;
             var Playername = ""; 
             var timer =0;
+            for (i=0;i<questions.length;i++) {
+                console.log(questions[i]);}
             startGame();
         }
         
@@ -26,6 +28,14 @@ var QuizGame = function(){
             // displaying the navigation
             // listening for the user to click upon the button
             // loads the score from localStorage or sets up localStorage
+            var startPage = document.createElement("div");
+            startPage.setAttribute("id", "quizcontainer");
+            var startButton = document.createElement("button");
+            startButton.setAttribute("id", "startquiz");
+            startPage.appendChild(startButton);
+            document.getElementById("div1").appendChild(startPage);
+            document.getElementById('startquiz').innerHTML = "Start Quiz!";
+            document.getElementById("startquiz").addEventListener("click",startBtn_onClick());
         }
         
         function startBtn_onClick(event){
@@ -33,18 +43,11 @@ var QuizGame = function(){
             // shows a new page (maybe) that
             // displays the questions
             // that is all that it does.
-            $("#startquiz").click(function(){
-                $(this).hide();
-                for (i=0;i<questions.length;i++) {
-                console.log(questions[i]);
-                var title = questions[i].data.title;
-                var choices = $().add("BUTTON").addClass("choices").innerText(questions[i].data.choices).css("background-color", "purple");
-                var answer = questions[i].data.answer;
-                $("#quizcontainer").append(title, choices);
-                          }});
-
+            var titile = document.createElement("div").innerText(Object.titile);
+            var choices = document.createElement("button").innerText(Object.choices);
+            title.appendChild(choices);
+            startPage.replaceChild(title, startButton);
             gameLogic(); // now run the game logic itself
-        
         }
         
         function gameLogic(){
