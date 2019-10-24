@@ -1,12 +1,7 @@
 
+var time = questions.length * 5
+var timerEl = document.getElementById("time");
 
-
-//sessionStorage.setItem("lastname", "Smith");
-//document.getElementById("result").innerHTML = sessionStorage.getItem("lastname");
-
-//localStorage.setItem("lastname", "Smith");
-
-//document.getElementById("result").innerHTML = localStorage.getItem("lastname");
 var QuizGame = function(){
 
         function init(){
@@ -17,8 +12,6 @@ var QuizGame = function(){
             var score = 0;
             var Playername = ""; 
             var timer =0;
-            for (i=0;i<questions.length;i++) {
-                console.log(questions[i]);}
             startGame();
         }
         
@@ -29,7 +22,7 @@ var QuizGame = function(){
             // listening for the user to click upon the button
             // loads the score from localStorage or sets up localStorage
             var startPage = document.createElement("div");
-            startPage.setAttribute("id", "quizcontainer");
+            startPage.setAttribute("id", "start");
             var startButton = document.createElement("button");
             startButton.setAttribute("id", "startquiz");
             startPage.appendChild(startButton);
@@ -43,15 +36,12 @@ var QuizGame = function(){
             // shows a new page (maybe) that
             // displays the questions
             // that is all that it does.
-            var title = document.createElement("h1");
-            title.setAttribute("id","title1");
-            var objTitle = console.log(questions[0]);
-            document.getElementById("title1").innerHTML = objTitle;
-            var choices = document.createElement("button");
-            choices.setAttribute("id", "choices1");
-            document.getElementById("choices1"),innerHTML = console.log(Object.value[choices]);
-            title.appendChild(choices);
-            startPage.replaceChild(title, startButton);
+            var start1 = document.getElementById("start");
+            start1.setAttribute("class", "hide");
+            var quizContainer = document.createElement("div");
+            quizContainer.setAttribute("id", "quizcontainer");
+            document.getElementById("div1").appendChild(quizContainer);
+
             gameLogic(); // now run the game logic itself
         }
         
@@ -60,56 +50,28 @@ var QuizGame = function(){
             // starts the timer
             // listen for click events of all quiz question buttons.
             // 
-            function startTimer() {
-                var tobj = document.getElementById("timespent")
-                var t = "0:00";
-                var s = 00;
-                var d = new Date();
-                var timeint = setInterval(function () {
-                  s += 1;
-                  d.setMinutes("0");
-                  d.setSeconds(s);
-                  min = d.getMinutes();
-                  sec = d.getSeconds();
-                  if (sec < 10) sec = "0" + sec;
-                  document.getElementById("time").value = min + ":" + sec;
-                }, 1000);
-                tobj.value = t;
-              }
-              if (window.addEventListener) {              
-                window.addEventListener("load", startTimer);
-              } else if (window.attachEvent) {                 
-                window.attachEvent("onload", startTimer);
-              }
-
-        
+            timerId = setInterval(clockTick, 1000);
+            document.getElementById("choices").addEventListener("click",quizBtns_onClick(event));
         }
         
         function quizBtns_onClick(event){
             // this task handles what to do when you click on a question's "answer button"
             // maybe call a function that determines if question is answered correctly (or not) 
-            $(".choices").click(function(){
-                if (question ==! true) {
-                    alert("right");
-                }
-                else {
-                    alert("wrong");
-                }
-            });
             determineIfQuestionIsRightOrWrong(question);
+            //move to next question
         }
         
         function determineIfQuestionIsRightOrWrong(question){
             // this task, given a question, determines if the answer is right or wrong
             // if question is correct, change the score and add some points
             // if question is incorrect, change the score and decrease points
-            var question = $(".choices").click();
-            if (question == answer) {
-                return true;
+            if (document.getElementById("choices").onclick == answer) {
+                alert("right");
+                changeTheScore(10);
             }
-
             else {
-                return false;
+                alert("wrong");
+                changeTheScore(-5);
             }
 
         }
@@ -117,14 +79,7 @@ var QuizGame = function(){
         function changeTheScore(value){
             // this task, given a value will increase -or- decrease the score.
             // that is all it does.
-            $(".choices").click(function(){
-                if (question ==! answer) {
-                    score += 10;
-                }
-                else {
-                    score -= 5;
-                }
-            });
+            return score += value;
         }
         
         function endGame(){
