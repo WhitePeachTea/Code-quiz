@@ -21,11 +21,12 @@ function generateQuestions(){
     choicesButton.setAttribute("class", "choices");
     choicesButton.setAttribute("value", choice);
     choicesButton.textContent = i + 1 + ". " + choice;          
-    choicesButton.onclick = questionClick;
     choicesSection.appendChild(choicesButton);
  });
 }
  
+
+
 $("#startquiz").click(function(){
     $(startPage).hide();
   });
