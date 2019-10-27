@@ -2,6 +2,7 @@ var score = 0;
 var Playername = ""; 
 var time = questions.length * 15;
 var timerContent = document.getElementById("time");
+var timerSection = document.getElementById("timer");
 var timer;
 var quizStatus = 0;
 var titleSection = document.getElementById("title");
@@ -11,6 +12,10 @@ var choicesSection = document.getElementById("choices")
 var quizStatus = 0;
 var thisQuestion = questions[quizStatus];
 var answers = document.getElementById("answers")
+var endPage = document.getElementById("endpage");
+var names = document.getElementById("names");
+
+$(endPage).hide();
 
 
 function generateQuestions(){
@@ -39,7 +44,10 @@ $(".choices").click(function(){
         answers.textContent = "Wrong!";
       } else {
     
-        answers.textContent = "Correct!";}
+        answers.textContent = "Correct!";
+    }
+    
+    setTimeout(function(){$(answers).hide();}, 1000);
         
 }); 
 
@@ -48,29 +56,21 @@ $(".choices").click(function(){
     quizStatus++;
     
     if (quizStatus === questions.length) {
-          endGame();
+        $(answers).show();
+        setTimeout(function(){endGame();
+        }, 2000);
     } else {
-        generateQuestions();
-        }
-    });
+        setTimeout(function(){generateQuestions();
+    }, 1000);
+    $(answers).show();
+}
+});
 
 }
 
-$(".choices").click(function(){
-
-quizStatus++;
-
-if (quizStatus === questions.length) {
-      endGame();
-} else {
-    generateQuestions();
-    }
-});
-
-
-
 $("#startquiz").click(function(){
     $(startPage).hide();
+    setTimeout(function(){ $("#endgame").removeAttribute("hide"); }, 75000);
   });
 
 function setTimer(){
@@ -91,11 +91,34 @@ document.getElementById("startquiz").addEventListener("click",function(){
     
     function endGame(){
         // steps required when the game is ended.
-    setTimeout(function(){ $("#quizcontainer").add("<h1>Timeout!<h1>"); }, 75000);
-
+    $(questionSection).hide();
+    $(timerSection).hide();
+    $(answers).hide();
+    $(endPage).show();
     }
+
+
     
     // ... add additional functions as needed. THIS IS NOT COMPLETE.
     
-        
+
+
+    function saveHighscore() {
+        var winnerNames = names.value.trim();
       
+        if (winnerNames !== "") {
+          
+        var highscores =
+            JSON.parse(window.localStorage.getItem("highscores")) || [];
+      
+        var newScore = {
+            score: time,
+            winnerNames: winnerNames
+          };
+      
+          highscores.push(newScore);
+          window.localStorage.setItem("highscores", JSON.stringify(highscores));
+      
+          window.location.href = "score.html";
+        }
+      }

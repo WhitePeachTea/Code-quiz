@@ -6,7 +6,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-  <div id = "time"></div>
+  <div><a id = "viewhighscores">View Highscores</a>
+  </div>
+  <div id = "timer">Time: <span id="time">0</span></div>
   <div id = "start">
     <h2>Code Quiz Challenger</h2>
     <p>Try to answer the following code-related questions with the time limit. wrong answer would be penalized in remaining time and your final scores!</p>
@@ -18,7 +20,13 @@
 </div>
 <div id = "answers"> 
 </div>
-<div>
+<div id = "endpage">
+  <h2>No more questions!</h2>
+<p></p>
+<p>Put your name here to save your scores
+    <input type="text" id="names"/>
+    <button id="submit">Submit</button>
+</p>
 </div>
 
 </body>
