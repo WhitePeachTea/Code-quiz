@@ -1,5 +1,4 @@
-var score = 0;
-var Playername = ""; 
+var winnerNames = ""; 
 var time = questions.length * 15;
 var timerContent = document.getElementById("time");
 var timerSection = document.getElementById("timer");
@@ -95,6 +94,8 @@ document.getElementById("startquiz").addEventListener("click",function(){
     $(timerSection).hide();
     $(answers).hide();
     $(endPage).show();
+    var yourScore = document.getElementById("final-score");
+    yourScore.textContent = time;
     }
 
 
@@ -103,22 +104,5 @@ document.getElementById("startquiz").addEventListener("click",function(){
     
 
 
-    function saveHighscore() {
-        var winnerNames = names.value.trim();
-      
-        if (winnerNames !== "") {
-          
-        var highscores =
-            JSON.parse(window.localStorage.getItem("highscores")) || [];
-      
-        var newScore = {
-            score: time,
-            winnerNames: winnerNames
-          };
-      
-          highscores.push(newScore);
-          window.localStorage.setItem("highscores", JSON.stringify(highscores));
-      
-          window.location.href = "score.html";
-        }
-      }
+    // $("#sumbit").click(function(){
+   

@@ -12,12 +12,12 @@ var questions = [
     {
         title:"Arrays in JavaScript can be used to store _____",
         choices: ["numbers and strings", "other arrays", "booleans", "all of the above"],
-        answer: "other arrays"
+        answer: "all of the above"
     },
     {
         title:"String values must be enclosed within ______ when being assigned to variables.",
         choices: ["commas", "curly brackets", "quotes", "parentheses"],
-        answer: "curly brackets"
+        answer: "quotes"
 
     },
     {
